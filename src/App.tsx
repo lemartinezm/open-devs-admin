@@ -1,7 +1,9 @@
 import React, { useReducer } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Box } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 import AppRoutes from './routes/AppRoutes';
+
+// Utils
 import { ACTIONS } from './utils/enums';
 
 // Provide context to the app
@@ -40,11 +42,11 @@ function App () {
       state,
       dispatch
     }}>
-      <Box maxWidth='1440px' >
+      <Container maxWidth='1440px'>
         <Router>
           <AppRoutes />
         </Router>
-      </Box>
+      </Container>
     </MyContext.Provider>
 
   );
