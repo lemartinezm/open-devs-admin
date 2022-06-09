@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+
+// Chakra UI
 import {
   Box,
   Button,
@@ -6,13 +9,24 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   Link as ChakraLink,
   Spacer,
-  Text
+  Text,
+  useColorMode
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
 
 const LoginForm = ({ handleSubmit }: any) => {
+  const [viewPassword, setViewPassword] = useState(false);
+  const { colorMode } = useColorMode();
+
+  function handleClick () {
+    setViewPassword(!viewPassword);
+  }
+
   return (
     <Box as='form' onSubmit={handleSubmit}>
       <FormControl isRequired>
@@ -32,13 +46,22 @@ const LoginForm = ({ handleSubmit }: any) => {
         <FormLabel htmlFor='password'>
           Password
         </FormLabel>
-        <Input
-          id='password'
-          name='password'
-          type='password'
-          placeholder='Min. 8 characters'
-          mb={6}
-        />
+        <InputGroup>
+          <Input
+            id='password'
+            name='password'
+            type={viewPassword ? 'text' : 'password'}
+            placeholder='Min. 8 characters'
+            mb={6}
+          />
+          <InputRightElement>
+            {
+              viewPassword
+                ? <ViewOffIcon onClick={handleClick} cursor='pointer' />
+                : <ViewIcon onClick={handleClick} cursor='pointer' />
+            }
+          </InputRightElement>
+        </InputGroup>
       </FormControl>
 
       <Flex mb={6}>
@@ -46,7 +69,7 @@ const LoginForm = ({ handleSubmit }: any) => {
           Keep me logged in
         </Checkbox>
         <Spacer />
-        <ChakraLink as={Link} to='/forgot' color='blue'>
+        <ChakraLink as={Link} to='/forgot' color={colorMode === 'light' ? 'blue' : 'white'}>
           Forgot password?
         </ChakraLink>
       </Flex>
@@ -63,7 +86,7 @@ const LoginForm = ({ handleSubmit }: any) => {
 
       <Text>
         {'Not registered yet? '}
-        <ChakraLink as={Link} to='/register' color='blue'>
+        <ChakraLink as={Link} to='/register' color={colorMode === 'light' ? 'blue' : 'white'}>
           Create an Account
         </ChakraLink>
       </Text>

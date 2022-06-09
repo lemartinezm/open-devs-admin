@@ -8,3 +8,4 @@
 
 2. 
     * Added responsive design to LoginPage
+    * Added colorMode

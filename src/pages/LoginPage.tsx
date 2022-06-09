@@ -31,10 +31,10 @@ const LoginPage = () => {
   }
 
   return (
-    <Grid templateColumns={['1fr', '1fr', '1fr', '1fr 1fr']}>
+    <Grid templateColumns={['1fr', '1fr', '1fr', '1fr 1fr']} alignItems='center' >
       <GridItem mx={[5, 10, 20]} >
         <Center>
-          <Box mt={20} w={['100%', '100%', '400px']}>
+          <Box w={['100%', '100%', '400px']}>
             <Box>
               <Heading fontSize='4xl'>
                 Sign In
@@ -61,9 +61,9 @@ const LoginPage = () => {
         </Center>
       </GridItem>
 
-      <Hide below='lg'>
+      <Hide below='991px'>
         <GridItem>
-          <Box as='div'
+          <Box
             backgroundImage={office}
             bgPos={'75% 0%'}
             bgRepeat='no-repeat'
