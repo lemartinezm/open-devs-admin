@@ -6,6 +6,7 @@ import DashboardPage from '../pages/DashboardPage';
 import NewOfferPage from '../pages/NewOfferPage';
 import OfferSheet from '../pages/OfferSheet';
 import RegisterPage from '../pages/RegisterPage';
+import { KanbanPage } from '../pages/KanbanPage';
 import { useContext } from 'react';
 
 // Context
@@ -26,6 +27,7 @@ const AppRoutes = () => {
             <Route path='login' element={<LoginPage />} />
             <Route path='register' element={<RegisterPage />} />
             <Route path='*' element={<Navigate to='login' />} />
+            <Route path='kanban' element={<KanbanPage />} />
           </>
       }
     </Routes>
