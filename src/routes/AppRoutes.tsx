@@ -27,9 +27,9 @@ const AppRoutes = () => {
             <Route path='login' element={<LoginPage />} />
             <Route path='register' element={<RegisterPage />} />
             <Route path='*' element={<Navigate to='login' />} />
-            <Route path='kanban' element={<KanbanPage />} />
           </>
       }
+      <Route path='kanban/*' element={<KanbanPage />} />
     </Routes>
   );
 };
