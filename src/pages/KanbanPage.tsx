@@ -50,31 +50,31 @@ const headers = [
 
 const candidatos: any = [
   {
-    id: 1,
+    id: 'cand-1',
     nombre: 'Luis',
     estado: CandidatosEstado.PRESENTADO,
     nivel: CandidatosNivel.BASICO
   },
   {
-    id: 2,
+    id: 'cand-2',
     nombre: 'Martin',
     estado: CandidatosEstado.CONTRATADO,
     nivel: CandidatosNivel.INTERMEDIO
   },
   {
-    id: 3,
+    id: 'cand-3',
     nombre: 'Claudia',
     estado: CandidatosEstado.DESCARTADO,
     nivel: CandidatosNivel.BASICO
   },
   {
-    id: 4,
+    id: 'cand-4',
     nombre: 'Marta',
     estado: CandidatosEstado.ENTREVISTADO,
     nivel: CandidatosNivel.AVANZADO
   },
   {
-    id: 5,
+    id: 'cand-5',
     nombre: 'Jorge',
     estado: CandidatosEstado.ENTREVISTADO,
     nivel: CandidatosNivel.BASICO
@@ -109,7 +109,10 @@ export const KanbanPage = () => {
         headers={headers}
         itemStyle={{ color: 'black' }}
         onItemRender={handleItemRender}
-        onDragEnd={(result) => alert(`${result.source.droppableId} -> ${result.destination?.droppableId}`)}
+        onDragEnd={(result) => {
+          alert(`${result.draggableId} ${result.source.droppableId} -> ${result.destination?.droppableId}`);
+          console.log(result);
+        }}
       />
     </Flex>
   );
