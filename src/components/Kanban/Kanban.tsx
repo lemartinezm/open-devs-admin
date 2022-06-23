@@ -129,7 +129,7 @@ function Draggables({ field, dataToRender, onRender, sx = {} }: DraggablesProps)
     <>
       {
         dataToRender.map((item, index) => (
-          <Draggable key={`${field}-${index}`} draggableId={`${field}-${index}`} index={index}>
+          <Draggable key={`${field}-${index}`} draggableId={`${item.id}`} index={index}>
             {(providedDrag) => (
               <Flex
                 bgColor='gray_2'
