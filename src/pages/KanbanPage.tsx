@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
-import { Kanban } from '../components/Kanban';
+import { DropResult } from 'react-beautiful-dnd';
+import { Headers, Kanban } from '../components/Kanban';
 
 export enum CandidatosEstado {
   PRESENTADO = 'presentado',
@@ -14,7 +16,7 @@ export enum CandidatosNivel {
   AVANZADO = 'avanzado'
 }
 
-const headers = [
+const headersEstado: Headers[] = [
   {
     label: 'Presentado',
     value: CandidatosEstado.PRESENTADO
@@ -33,7 +35,7 @@ const headers = [
   }
 ];
 
-// const headers = [
+// const headersNivel = [
 //   {
 //     label: 'Básico',
 //     value: CandidatosNivel.BASICO
@@ -82,6 +84,25 @@ const candidatos: any = [
 ];
 
 export const KanbanPage = () => {
+  const [headers, setHeaders] = useState<Headers[]>(headersEstado);
+
+  function handleOnDragEnd(result: DropResult) {
+    // Nota: tenemos dos tipos en el objecto result: columns e items.
+    if (result.type === 'columns') {
+      alert(`${result.draggableId} ${result.source.droppableId} ${result.source.index} -> ${result.destination?.droppableId} ${result.destination?.index}`);
+      const temp = [...headers];
+      if (result.destination) {
+        const itemToMove = temp.splice(result.source.index, 1);
+        temp.splice(result.destination?.index, 0, itemToMove[0]);
+      }
+      setHeaders(temp);
+    } else {
+      alert(`${result.draggableId} ${result.source.droppableId} ${result.source.index} -> ${result.destination?.droppableId} ${result.destination?.index}`);
+      console.log(result);
+    }
+    console.log(result);
+  }
+
   function handleItemRender(item: any) {
     return (
       <Flex flexDir='column'>
@@ -109,10 +130,7 @@ export const KanbanPage = () => {
         headers={headers}
         itemStyle={{ color: 'black' }}
         onItemRender={handleItemRender}
-        onDragEnd={(result) => {
-          alert(`${result.draggableId} ${result.source.droppableId} -> ${result.destination?.droppableId}`);
-          console.log(result);
-        }}
+        onDragEnd={handleOnDragEnd}
       />
     </Flex>
   );
